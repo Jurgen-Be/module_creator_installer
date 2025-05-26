@@ -29,6 +29,8 @@ def get_logger(directory: str, filename: str) -> logging.Logger:
     return logger
 
 # How to use
+"""
 logger = get_logger("logs", "app.log")
 logger.info("This is a information message")
 logger.error("This is a error message")
+"""
