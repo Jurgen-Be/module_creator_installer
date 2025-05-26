@@ -1,5 +1,12 @@
 # Configuration file
 
+# Import modules
+import toml
+
+# Modules config
+from mod.log import get_logger
+logger = get_logger(".log", "app.log")
+
 class Logconfig():
     def __init__(self):
         self.log_path = "./log"
@@ -21,3 +28,16 @@ class User_data():
         self.project_folder = ""
         self.virtualisation_soft = ""
         self.installed_packages = {}
+
+class Application_info():
+    """Managed the application information like name and version."""
+    def __init__(self, config_file = "pyproject.toml"):  # The _ means it is a private function in this class
+        self.config_file = config_file
+        self._load_info()
+
+    def _load_info(self):
+        """Load the application data from the toml file."""
+        try:
+            data = toml.load(self.config_file)
+            self.name = data["Project"]["name"]
+            

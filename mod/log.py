@@ -16,15 +16,17 @@ def get_logger(directory: str, filename: str) -> logging.Logger:
     log_path = os.path.join(directory, filename)
 
     logger = logging.getLogger(filename)  # Loggger setup the logger filename
-    logger.setLevel(logging.DEBUG)        # Logger level setup
+    
+    if not logger.handlers:
+        logger.setLevel(logging.DEBUG)        # Logger level setup
 
-    # Format of the log message
-    formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+        # Format of the log message
+        formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 
-    # Filehandler with rotation
-    file_handler = RotatingFileHandler(log_path, maxBytes=MAX_LOG_SIZE, backupCount=BACKUP_COUNT)
-    file_handler.setFormatter(formatter)
-    logger.addHandler(file_handler)
+        # Filehandler with rotation
+        file_handler = RotatingFileHandler(log_path, maxBytes=MAX_LOG_SIZE, backupCount=BACKUP_COUNT)
+        file_handler.setFormatter(formatter)
+        logger.addHandler(file_handler)
 
     return logger
 
