@@ -11,3 +11,5 @@ The module is useful for logging information, problems, ... to a log file.
     -   warning message: logger.warning("message")
     -   error message: logger.error("message")
     -   critical message: logger.critical("message")
+
+## Module config.py

@@ -2,14 +2,14 @@
 from mod.log import get_logger
 
 # Import own modules
-from config import Logconfig, User_data
+from config import Logconfig, User_data, Application_info
 
 # Modules config
 logconfig = Logconfig()
 user_data = User_data()
 logger = get_logger(logconfig.log_path, logconfig.log_file)    # Algemene logger
 database_logger = get_logger(logconfig.log_path, logconfig.database_log_file)  # Logger voor database logging
-
+application_info = Application_info()
 
 def main():
     pass
@@ -17,4 +17,5 @@ def main():
 
 if __name__ == "__main__":
     logger.info("Applicatie opgestart")
+    print(application_info)
     main()

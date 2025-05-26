@@ -5,7 +5,7 @@ import toml
 
 # Modules config
 from mod.log import get_logger
-logger = get_logger(".log", "app.log")
+logger = get_logger("./log", "app.log")
 
 class Logconfig():
     def __init__(self):
@@ -39,5 +39,20 @@ class Application_info():
         """Load the application data from the toml file."""
         try:
             data = toml.load(self.config_file)
-            self.name = data["Project"]["name"]
-            
+            self.name = data["project"]["name"]
+            self.version = data["project"]["version"]
+            self.description = data["project"]["description"]
+
+        except Exception as e:
+            logger.error(f"Fout bij het laden van {self.config_file}: {e}")
+    
+    def __str__(self):
+        logger.info(f"Information {self.name} v{self.version} - {self.description} loaded")
+        return f"{self.name} v{self.version} - {self.description}"
+    
+    """ Use:
+            app_info = Application_info()
+            version = app_info.version
+            app_name = app_info.name
+            app_description = app_info.description
+            for all print(app_info)"""
