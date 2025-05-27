@@ -47,7 +47,7 @@ def get_current_version():
         return None
     
 # Apply a version update
-def bump_version(level:str)
+def bump_version(level:str):
     current_version = get_current_version()
     if not current_version:
         print("Cant load the current version, check the pyproject.toml please.")
@@ -58,4 +58,26 @@ def bump_version(level:str)
         "--current-version", current_version,
         "--commit", "--tag",
         "pyproject.toml", "main.py"
-    ])
+    ]) 
+
+if __name__ == "__main__":
+    print("\n<choose a version update: ")
+    print("1    Bugfix / Patch")
+    print("2    New feature / Minor")
+    print("3    Big changes / Major")
+
+    choice = input("Select a option (1/2/3): ").strip()
+
+    if choice == "1":
+        bump_version("patch")
+    elif choice == "2":
+        bump_version("minor")
+    elif choice == "3":
+        bump_version("major")
+
+    else:
+        print("The choice is not valid, try again.")
+
+    new_version =get_current_version()
+    if new_version:
+        print(f"\n New version: {new_version}")
