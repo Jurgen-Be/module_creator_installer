@@ -7,6 +7,16 @@ import os
 import sys
 import toml
 
+# Check git
+def is_git_dirty():
+    """ Check if the repository is up to date."""
+    try:
+        result = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
+        return bool(result.stdout.strip())
+    
+    except Exception:
+        return False
+
 # Detect the installed packagemanager
 
 def get_active_package_manager():
@@ -48,6 +58,21 @@ def get_current_version():
     
 # Apply a version update
 def bump_version(level:str):
+
+    if is_git_dirty():
+        print("  The git is not saved before the update!, make the changes first:")
+        print("   git add .")
+        print('   git commit -m "Update before version update"')
+        git_choice = input("   Do you want that we make the git update for you? (y/n)").strip().lower()
+        if git_choice == "y":
+            subprocess.run(["git", "add", "*"])
+            subprocess.run(["git", "commit", "-m", "update before version update"])
+            subprocess.run(["git", "push"])
+
+        elif git_choice == "n":
+         print ("Update the git manualy and start the script again")
+         sys.exit()
+
     current_version = get_current_version()
     if not current_version:
         print("Cant load the current version, check the pyproject.toml please.")
