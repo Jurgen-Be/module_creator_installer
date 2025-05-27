@@ -4,6 +4,8 @@ from mod.log import get_logger
 # Import own modules
 from config import Logconfig, User_data, Application_info
 
+VERSION = "0.0.1"
+
 # Modules config
 logconfig = Logconfig()
 user_data = User_data()
