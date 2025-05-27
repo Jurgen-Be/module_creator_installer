@@ -34,4 +34,28 @@ def ensure_packages():
                 subprocess.run(["uv", "add", package])
             elif package_manager == "pdm":
                 subprocess.run(["pdm", "add", package])
-                
+            else:
+                subprocess.run([sys.executable, "-m", "pip", "install", package])
+
+# Read the current version from the toml file
+def get_current_version():
+    try:
+        data = toml.load("pyproject.toml")
+        return data["project"]["version"]
+    except Exception as e:
+        print(f"Error by reading pyproject.toml: {e}")
+        return None
+    
+# Apply a version update
+def bump_version(level:str)
+    current_version = get_current_version()
+    if not current_version:
+        print("Cant load the current version, check the pyproject.toml please.")
+        return
+    subprocess.run([
+        "bump2version",
+        level,
+        "--current-version", current_version,
+        "--commit", "--tag",
+        "pyproject.toml", "main.py"
+    ])
