@@ -1,7 +1,7 @@
 # Version change log
 
 ## Version 0.0.2
--   Bsic GUI with Pyside6
+-   Basic GUI with Pyside6
 
 ## Version 0.0.1
 -   Basic programmation of the project
