@@ -90,8 +90,9 @@ if __name__ == "__main__":
     print("1    Bugfix / Patch")
     print("2    New feature / Minor")
     print("3    Big changes / Major")
+    print("4    Exit")
 
-    choice = input("Select a option (1/2/3): ").strip()
+    choice = input("Select a option (1/2/3/4): ").strip()
 
     if choice == "1":
         bump_version("patch")
@@ -99,6 +100,8 @@ if __name__ == "__main__":
         bump_version("minor")
     elif choice == "3":
         bump_version("major")
+    elif choice == "4":
+        sys.exit()
 
     else:
         print("The choice is not valid, try again.")
