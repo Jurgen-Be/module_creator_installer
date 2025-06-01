@@ -31,15 +31,15 @@ class MainWindow(QMainWindow):
         self.ui.lbl_Title.setText(f"{APP_NAME} V{VERSION}")
 
         # Butttons and actions
-        self.ui.pushButton_Installer.clicked.connect() # Lambda nog invoegen
+        self.ui.pushButton_Installer.clicked.connect(lambda: self.switch_screens(self.install_screen))
 
         # Widget screens
 
             # Install screen
-        self.install_screen = "" # Nog invullen na creeren ui file
+        self.install_screen = None # Nog invullen na creeren ui file
 
         # Add screens to stackedwidget
-        self.stacked_widget.addWidget(self.install_screen)
+        #self.stacked_widget.addWidget(self.install_screen)
 
     def switch_screens(self, screen_name):
         """ Show a other screen."""
