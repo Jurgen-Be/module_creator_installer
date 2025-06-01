@@ -2,7 +2,7 @@
 import sys
 
 from mod.log import get_logger
-from PySide6.QtWidgets import QMainWindow, QApplication
+from PySide6.QtWidgets import QMainWindow, QApplication, QStackedWidget
 
 # Import own modules
 from config import Logconfig, User_data
@@ -23,11 +23,27 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         logger.info("GUI started")
+
+        # Config stacked widget frame
+        self.stacked_widget = QStackedWidget(self.ui.widget)
+
+        # Labels
         self.ui.lbl_Title.setText(f"{APP_NAME} V{VERSION}")
 
         # Butttons and actions
+        self.ui.pushButton_Installer.clicked.connect() # Lambda nog invoegen
 
         # Widget screens
+
+            # Install screen
+        self.install_screen = "" # Nog invullen na creeren ui file
+
+        # Add screens to stackedwidget
+        self.stacked_widget.addWidget(self.install_screen)
+
+    def switch_screens(self, screen_name):
+        """ Show a other screen."""
+        self.stacked_widget.setCurrentWidget(screen_name)
 
 if __name__ == "__main__":
     logger.info("Applicatie opgestart")
