@@ -9,6 +9,7 @@ from config import Logconfig, User_data
 from mod.ui_main_window import Ui_MainWindow
 
 VERSION = "0.0.2"
+APP_NAME = "Python Manager"
 
 # Modules config
 logconfig = Logconfig()
@@ -22,7 +23,11 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         logger.info("GUI started")
+        self.ui.lbl_Title.setText(f"{APP_NAME} V{VERSION}")
 
+        # Butttons and actions
+
+        # Widget screens
 
 if __name__ == "__main__":
     logger.info("Applicatie opgestart")
